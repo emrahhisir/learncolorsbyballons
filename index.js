@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { AppRegistry } from "react-native";
+import MainComponent from "./main";
 
-AppRegistry.registerComponent('LearnColorsByBalloons', () => App);
+AppRegistry.registerComponent("LearnColorsByBalloons", () => MainComponent);
