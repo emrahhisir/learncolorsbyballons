@@ -3,33 +3,20 @@
 */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import Svg, {
-  Defs,
-  LinearGradient,
-  RadialGradient,
-  Stop,
-  Ellipse,
-  Circle,
-  Rect,
-  G,
-  Path,
-  Polygon
-} from "react-native-svg";
+import Svg, { G, Path } from "react-native-svg";
 import PropTypes from "prop-types";
-
-const numberProp = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
-const cloudNumber = 5;
+import * as ShapesCommon from "./Common";
 
 export default class Sky extends Component<{}> {
   clouds = [];
   skyPathPoints;
+  cloudNumber = 5;
 
   static propTypes = {
-    width: numberProp.isRequired,
-    height: numberProp.isRequired,
-    skyColor: numberProp.isRequired,
-    cloudColor: numberProp.isRequired
+    width: ShapesCommon.numberProp.isRequired,
+    height: ShapesCommon.numberProp.isRequired,
+    skyColor: ShapesCommon.numberProp.isRequired,
+    cloudColor: ShapesCommon.numberProp.isRequired
   };
 
   constructor(props) {
@@ -172,7 +159,7 @@ export default class Sky extends Component<{}> {
     ];
     dString = d.join(" ");
     this.clouds.push(<Path key="0" fill={this.props.cloudColor} d={dString} />);
-    for (var i = 1; i < cloudNumber; i++) {
+    for (var i = 1; i < this.cloudNumber; i++) {
       yOffset = -ySign * i * Math.floor(Math.random() * 50);
       ySign *= -1;
       d[1] = `${parseFloat(d[1]) + xOffset}`;

@@ -3,31 +3,19 @@
 */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import Svg, {
-  Defs,
-  LinearGradient,
-  RadialGradient,
-  Stop,
-  Ellipse,
-  Circle,
-  Rect,
-  G,
-  Path,
-  Polygon
-} from "react-native-svg";
-import * as CommonShapes from "./Common";
+import Svg, { Ellipse, G, Polygon } from "react-native-svg";
+import * as ShapesCommon from "./Common";
 
 export default class Balloon extends Component<{}> {
   rotateDegree = 1.0;
   polygonPoints;
 
   static propTypes = {
-    cx: CommonShapes.numberProp.isRequired,
-    cy: CommonShapes.numberProp.isRequired,
-    rx: CommonShapes.numberProp.isRequired,
-    ry: CommonShapes.numberProp.isRequired,
-    color: CommonShapes.numberProp.isRequired
+    cx: ShapesCommon.numberProp.isRequired,
+    cy: ShapesCommon.numberProp.isRequired,
+    rx: ShapesCommon.numberProp.isRequired,
+    ry: ShapesCommon.numberProp.isRequired,
+    color: ShapesCommon.numberProp.isRequired
   };
 
   constructor(props) {
