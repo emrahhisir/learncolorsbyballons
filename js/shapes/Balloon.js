@@ -3,48 +3,76 @@
 */
 
 import React, { Component } from "react";
-import Svg, { Ellipse, G, Polygon } from "react-native-svg";
-import * as ShapesCommon from "./Common";
+import { Dimensions } from "react-native";
+import { Ellipse, G, Polygon } from "react-native-svg";
+import * as Common from "../common";
 
 export default class Balloon extends Component<{}> {
-  rotateDegree = 1.0;
-  polygonPoints;
-
   static propTypes = {
-    cx: ShapesCommon.numberProp.isRequired,
-    cy: ShapesCommon.numberProp.isRequired,
-    rx: ShapesCommon.numberProp.isRequired,
-    ry: ShapesCommon.numberProp.isRequired,
-    color: ShapesCommon.numberProp.isRequired
+    cx: Common.numberProp.isRequired,
+    cy: Common.numberProp.isRequired,
+    rx: Common.numberProp.isRequired,
+    ry: Common.numberProp.isRequired,
+    color: Common.numberProp.isRequired
   };
 
   constructor(props) {
     super(props);
+  }
 
+  /*componentDidMount() {
+    // this.updateWindowDimensions();
+    // window.addEventListener("resize", this.updateWindowDimensions);
+    this.animateTimer = setInterval(() => this.animate(), 30);
+  }
+
+  componentWillMount() {
+    this.updateWindowDimensions();
+    this.calculateInitialRenderSizes();
+  }
+
+  componentWillUnmount() {
+    // window.removeEventListener("resize", this.updateWindowDimensions);
+    clearInterval(this.animateTimer);
+  }
+
+  updateWindowDimensions() {
+    this.screenWidth = Dimensions.get("window").width;
+    this.screenHeight = Dimensions.get("window").height;
+  }
+
+  animate() {
+    let yOffset = this.props.animateSpeed * 2.0;
+    let newCyPos = this.state.cy - yOffset;
+    let rotateDegree =
+      this.state.rotateDegree + this.rotateSign * this.props.animateSpeed * 1.0;
+    if (parseInt(Math.abs(rotateDegree), 10) > MAX_ROTATE_DEGREE) {
+      this.rotateSign = this.rotateSign * -1;
+    }
+    this.setState({ cy: newCyPos, rotateDegree: rotateDegree });
+    this.prop.onUpdate();
+  }
+
+  calculateInitialRenderSizes() {
+    this.startCy = this.screenHeight + this.props.ry;
+  }*/
+
+  render() {
     let floatProps = Object.values(this.props).map(value => parseFloat(value));
-    this.polygonPoints = `${floatProps[0]}, ${floatProps[1] +
+    let polygonPoints = `${floatProps[0]}, ${floatProps[1] +
       floatProps[3]} ${floatProps[0] - floatProps[2] / 6}, ${floatProps[1] +
       1.1 * floatProps[3]} ${floatProps[0] +
       floatProps[2] / 6}, ${floatProps[1] + 1.1 * floatProps[3]}`;
-  }
-
-  animate(speed) {
-    this.props.cy += speed * 20.0;
-    this.rotateDegree = Math.sign(this.rotateDegree) * speed * -10.0;
-  }
-
-  render() {
-    this.animate(0.5);
-
     return (
       <G
         transform={
           "rotate(" +
-          this.rotateDegree +
+          this.props.rotateDegree +
           " " +
           this.props.cx +
           " " +
-          this.props.cy
+          this.props.cy +
+          ")"
         }
       >
         <Ellipse
@@ -53,8 +81,9 @@ export default class Balloon extends Component<{}> {
           rx={this.props.rx}
           ry={this.props.ry}
           fill={this.props.color}
+          fillOpacity="0.8"
         />
-        <Polygon points={this.polygonPoints} fill={this.props.color} />
+        <Polygon points={polygonPoints} fill={this.props.color} />
       </G>
     );
   }

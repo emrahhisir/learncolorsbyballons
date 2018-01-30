@@ -3,9 +3,9 @@
 */
 
 import React, { Component } from "react";
-import Svg, { G, Path } from "react-native-svg";
+import { G, Path } from "react-native-svg";
 import PropTypes from "prop-types";
-import * as ShapesCommon from "./Common";
+import * as Common from "../common";
 
 export default class Sky extends Component<{}> {
   clouds = [];
@@ -13,10 +13,10 @@ export default class Sky extends Component<{}> {
   cloudNumber = 5;
 
   static propTypes = {
-    width: ShapesCommon.numberProp.isRequired,
-    height: ShapesCommon.numberProp.isRequired,
-    skyColor: ShapesCommon.numberProp.isRequired,
-    cloudColor: ShapesCommon.numberProp.isRequired
+    width: Common.numberProp.isRequired,
+    height: Common.numberProp.isRequired,
+    skyColor: Common.numberProp.isRequired,
+    cloudColor: Common.numberProp.isRequired
   };
 
   constructor(props) {
@@ -182,8 +182,8 @@ export default class Sky extends Component<{}> {
     this.skyPathPoints = `M 0 0 L ${floatProps[0]} 0 L ${floatProps[0]} ${floatProps[1]} L 0 ${floatProps[1]} L 0 0 Z`;
   }
 
-  animate(speed) {
-    this.props.cy += speed * 20.0;
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
   }
 
   render() {
