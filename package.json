@@ -7,9 +7,21 @@
     "test": "jest"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "gsap": "^1.20.3",
+    "gsap-react-plugin": "^1.0.2",
+    "konva": "^2.0.2",
+    "min-document": "^2.19.0",
+    "particle-explosions": "^1.0.0",
     "react": "16.0.0",
+    "react-dom": "^16.2.0",
+    "react-konva": "^1.7.1",
     "react-native": "0.51.0",
-    "react-native-svg": "^6.0.1-rc.1"
+    "react-native-canvas": "^0.1.20",
+    "react-native-sound": "^0.10.9",
+    "react-native-svg": "^6.0.1-rc.1",
+    "react-particles-icons": "^3.2.0",
+    "react-transition-group": "^2.2.1"
   },
   "devDependencies": {
     "babel-jest": "22.0.4",

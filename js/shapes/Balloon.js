@@ -18,6 +18,8 @@ export default class Balloon extends Component<{}> {
 
   constructor(props) {
     super(props);
+
+    this.onPress = this.onPress.bind(this);
   }
 
   /*componentDidMount() {
@@ -56,6 +58,9 @@ export default class Balloon extends Component<{}> {
   calculateInitialRenderSizes() {
     this.startCy = this.screenHeight + this.props.ry;
   }*/
+  onPress() {
+    this.props.onPress(this.props.index);
+  }
 
   render() {
     let floatProps = Object.values(this.props).map(value => parseFloat(value));
@@ -82,6 +87,7 @@ export default class Balloon extends Component<{}> {
           ry={this.props.ry}
           fill={this.props.color}
           fillOpacity="0.8"
+          onPress={this.onPress}
         />
         <Polygon points={polygonPoints} fill={this.props.color} />
       </G>

@@ -1,17 +1,20 @@
 /**
-* Animation controller component
-*/
+ * Animation controller component
+ */
 
 import React, { Component } from "react";
 import { Dimensions } from "react-native";
 import Svg, { Ellipse, G, Polygon } from "react-native-svg";
 import Balloon from "../shapes/Balloon";
 import Sky from "../shapes/Sky";
+import BurstAnimation from "../animation/BurstAnimation";
+import ColorTextAnimation from "../animation/ColorTextAnimation";
 
 const BALLOON_NUMBER = 10;
 const SIDE_MARGIN = 15;
 const MAX_ROTATE_DEGREE = 15;
 const COLORS = ["red", "yellow", "green", "orange", "gray", "blue"];
+const COLORS_TEXT = ["KIRMIZI", "SARI", "YEŞİL", "TURUNCU", "GRİ", "MAVİ"];
 
 export default class AnimateController extends Component<{}> {
   animateSpeed = 1.0;
@@ -21,8 +24,13 @@ export default class AnimateController extends Component<{}> {
   balloonsCxPos = [];
   balloonsRotateDegree = [];
   balloonsRotateSign = [];
-  balloonsColor = [];
+  balloonsColorIndex = [];
   balloonNumber = BALLOON_NUMBER;
+  burstCx = 0.0;
+  burstCy = 0.0;
+  burstColor = COLORS[0];
+  burstStart = false;
+  selectedColor = 0;
 
   constructor(props) {
     super(props);
@@ -31,6 +39,8 @@ export default class AnimateController extends Component<{}> {
       rotateOffset: 0.0
     };
     this.animate = this.animate.bind(this);
+    this.onBalloonPress = this.onBalloonPress.bind(this);
+    this.burstFinish = this.burstFinish.bind(this);
     //this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     for (var i = 0; i < BALLOON_NUMBER; i++) {
@@ -38,7 +48,7 @@ export default class AnimateController extends Component<{}> {
       this.balloonsCyPos[i] = 0.0;
       this.balloonsRotateDegree[i] = 0.0;
       this.balloonsRotateSign[i] = 1;
-      this.balloonsColor[i] = COLORS[0];
+      this.balloonsColorIndex[i] = 0;
     }
   }
 
@@ -73,6 +83,7 @@ export default class AnimateController extends Component<{}> {
     this.rx = (this.screenWidth - 2 * SIDE_MARGIN) / BALLOON_NUMBER / 2;
     this.ry = this.rx * 1.4;
     this.startCy = this.screenHeight + this.ry;
+    this.burstWidth = 2 * this.rx;
   }
 
   calculateRenderSizes() {
@@ -82,16 +93,33 @@ export default class AnimateController extends Component<{}> {
   }
 
   generateNewBalloonIndex(recursionCount) {
-    let newBallooonIndex = 0;
+    let newBalloonIndex = 0;
 
-    newBallooonIndex = parseInt(Math.random() * BALLOON_NUMBER, 10);
-    if (this.balloonsCyPos[newBallooonIndex] <= this.newBalloonYThreshold) {
-      return newBallooonIndex;
+    newBalloonIndex = parseInt(Math.random() * BALLOON_NUMBER, 10);
+    if (this.balloonsCyPos[newBalloonIndex] <= this.newBalloonYThreshold) {
+      return newBalloonIndex;
     } else if (recursionCount < 2 * BALLOON_NUMBER) {
       return this.generateNewBalloonIndex(++recursionCount);
     } else {
       return -1;
     }
+  }
+
+  randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  randomBetweenExcept(min, max, exceptNumber) {
+    let randomNumber = Math.floor(Math.random() * (max - min) + min);
+
+    if (randomNumber == exceptNumber) {
+      if (exceptNumber == max) {
+        randomNumber--;
+      } else {
+        randomNumber++;
+      }
+    }
+    return randomNumber;
   }
 
   generateBalloonsPos() {
@@ -113,22 +141,27 @@ export default class AnimateController extends Component<{}> {
     }
 
     while (balloonNumberInTheScreen < this.balloonNumber) {
-      let newBallooonIndex = balloonNumberInTheScreen;
-      if (animateBegin) newBallooonIndex = this.generateNewBalloonIndex();
-      if (newBallooonIndex != -1) {
-        this.balloonsCyPos[newBallooonIndex] =
+      let newBalloonIndex = balloonNumberInTheScreen;
+      if (animateBegin) newBalloonIndex = this.generateNewBalloonIndex();
+      if (newBalloonIndex != -1) {
+        this.balloonsCyPos[newBalloonIndex] =
           Math.random() * 4 * this.ry + this.startCy;
-        this.balloonsCxPos[newBallooonIndex] =
+        this.balloonsCxPos[newBalloonIndex] =
           Math.random() * SIDE_MARGIN +
-          newBallooonIndex * (2 * this.rx) +
+          newBalloonIndex * (2 * this.rx) +
           this.rx;
-        this.balloonsRotateDegree[newBallooonIndex] =
+        this.balloonsRotateDegree[newBalloonIndex] =
           Math.random() * MAX_ROTATE_DEGREE - MAX_ROTATE_DEGREE / 2;
-        this.balloonsRotateSign[newBallooonIndex] = Math.sign(
-          this.balloonsRotateDegree[newBallooonIndex]
+        this.balloonsRotateSign[newBalloonIndex] = Math.sign(
+          this.balloonsRotateDegree[newBalloonIndex]
         );
-        this.balloonsColor[newBallooonIndex] =
-          COLORS[parseInt(Math.random() * COLORS.length, 10)];
+        let previousBalloonIndex =
+          newBalloonIndex == 0 ? 0 : newBalloonIndex - 1;
+        this.balloonsColorIndex[newBalloonIndex] = this.randomBetweenExcept(
+          0,
+          COLORS.length - 1,
+          this.balloonsColorIndex[previousBalloonIndex]
+        );
       }
       balloonNumberInTheScreen++;
     }
@@ -144,11 +177,34 @@ export default class AnimateController extends Component<{}> {
         cy: this.balloonsCyPos[i],
         rx: this.rx,
         ry: this.ry,
-        color: this.balloonsColor[i],
+        color: COLORS[this.balloonsColorIndex[i]],
         rotateDegree: this.balloonsRotateDegree[i],
         key: i
       };
     }
+  }
+
+  onBalloonPress(balloonIndex) {
+    if (this.balloonsColorIndex[balloonIndex] == this.selectedColor) {
+      this.burstCx = this.balloonsCxPos[balloonIndex];
+      this.burstCy = this.balloonsCyPos[balloonIndex];
+      this.burstColor = COLORS[this.balloonsColorIndex[balloonIndex]];
+      this.burstStart = true;
+      this.balloonsCyPos[balloonIndex] = -1.1 * this.ry;
+      this.selectedColor = this.randomBetweenExcept(
+        0,
+        COLORS.length - 1,
+        this.selectedColor
+      );
+      console.log("BALLOON PRESSED!!!");
+    }
+  }
+
+  burstFinish() {
+    // this.burstCx = 0.0;
+    // this.burstCy = 0.0;
+    // this.burstColor = COLORS[0];
+    this.burstStart = false;
   }
 
   render() {
@@ -163,6 +219,23 @@ export default class AnimateController extends Component<{}> {
           skyColor="#80c6e6"
           cloudColor="#ffffff"
         />
+        <BurstAnimation
+          cx={this.burstCx}
+          cy={this.burstCy}
+          color={this.burstColor}
+          burstStart={this.burstStart}
+          animateSpeed={this.animateSpeed}
+          burstWidth={this.burstWidth}
+          burstFinish={this.burstFinish}
+        />
+        <ColorTextAnimation
+          cx={0}
+          cy={0}
+          color={COLORS[this.selectedColor]}
+          colorText={COLORS_TEXT[this.selectedColor]}
+          animateSpeed={this.animateSpeed}
+          fontSize={this.burstWidth}
+        />
         {this.balloonElements.map(balloon => {
           return (
             <Balloon
@@ -173,6 +246,8 @@ export default class AnimateController extends Component<{}> {
               color={balloon.color}
               rotateDegree={balloon.rotateDegree}
               key={balloon.key}
+              index={balloon.key}
+              onPress={this.onBalloonPress}
             />
           );
         })}
