@@ -18,16 +18,16 @@ export default class ColorTextAnimation extends Component<{}> {
 	componentDidMount() {
 		switch (this.props.animateSpeed) {
 			case 1:
-				this.animationDurationInMsec = 3000;
-				break;
-			case 2:
 				this.animationDurationInMsec = 2000;
 				break;
-			case 3:
+			case 2:
 				this.animationDurationInMsec = 1000;
 				break;
+			case 3:
+				this.animationDurationInMsec = 500;
+				break;
 			default:
-				this.animationDurationInMsec = 4000;
+				this.animationDurationInMsec = 2000;
 		}
 
 		Sound.setCategory("Playback");
@@ -41,20 +41,20 @@ export default class ColorTextAnimation extends Component<{}> {
 					return;
 				}
 				// loaded successfully
-				console.log(
-					"duration in seconds: " +
-						this.colorSound.getDuration() +
-						"number of channels: " +
-						this.colorSound.getNumberOfChannels() +
-						" " +
-						this.colorSound.getVolume()
-				);
+				// console.log(
+				// 	"duration in seconds: " +
+				// 		this.colorSound.getDuration() +
+				// 		"number of channels: " +
+				// 		this.colorSound.getNumberOfChannels() +
+				// 		" " +
+				// 		this.colorSound.getVolume()
+				// );
 			}.bind(this)
 		);
 
 		// Reduce the volume by half
 		this.colorSound.setVolume(0.5);
-		console.log("Volume after setVolume: " + this.colorSound.getVolume());
+		// console.log("Volume after setVolume: " + this.colorSound.getVolume());
 
 		// Position the sound to the full right in a stereo field
 		this.colorSound.setPan(1);
@@ -81,7 +81,7 @@ export default class ColorTextAnimation extends Component<{}> {
 		// this.colorSound.play(
 		// 	function(success) {
 		// 		if (success) {
-		// 			console.log("successfully finished playing");
+		// 			// console.log("successfully finished playing");
 		// 		} else {
 		// 			console.log("playback failed due to audio decoding errors");
 		// 			// reset the player to its uninitialized state (android only)
@@ -92,16 +92,17 @@ export default class ColorTextAnimation extends Component<{}> {
 		// );
 		Animated.timing(this.state.animation, {
 			duration: this.animationDurationInMsec,
-			toValue: 28
-		}).start(
-			function() {
-				// this.colorSound.stop(() => {
-				// 	// Note: If you want to play a sound after stopping and rewinding it,
-				// 	// it is important to call play() in a callback.
-				// 	this.colorSound.play();
-				// });
-			}.bind(this)
-		);
+			toValue: 10
+		})
+			.start
+			// function() {
+			// 	this.colorSound.stop(() => {
+			// 		// Note: If you want to play a sound after stopping and rewinding it,
+			// 		// it is important to call play() in a callback.
+			// 		this.colorSound.play();
+			// 	});
+			// }.bind(this)
+			();
 	}
 
 	_randomBetween(min, max) {
@@ -110,12 +111,12 @@ export default class ColorTextAnimation extends Component<{}> {
 
 	render() {
 		const textSize = this.state.animation.interpolate({
-			inputRange: [0, 5, 9, 13],
+			inputRange: [0, 2, 5, 8],
 			outputRange: [
 				0,
 				this.props.fontSize / 2,
 				this.props.fontSize,
-				this.props.fontSize * 2 / 3
+				this.props.fontSize / 2
 			],
 			extrapolate: "clamp"
 		});
@@ -139,8 +140,6 @@ export default class ColorTextAnimation extends Component<{}> {
 }
 
 ColorTextAnimation.propTypes = {
-	cx: PropTypes.number.isRequired,
-	cy: PropTypes.number.isRequired,
 	color: PropTypes.string.isRequired,
 	colorText: PropTypes.string.isRequired,
 	animateSpeed: PropTypes.number.isRequired,

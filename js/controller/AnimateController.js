@@ -3,21 +3,58 @@
  */
 
 import React, { Component } from "react";
-import { Dimensions } from "react-native";
-import Svg, { Ellipse, G, Polygon } from "react-native-svg";
+import {
+  Dimensions,
+  TouchableHighlight,
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Slider,
+  Keyboard
+} from "react-native";
+import Svg, { Ellipse, G, Polygon, Circle } from "react-native-svg";
+import PopupDialog, {
+  SlideAnimation,
+  DialogTitle,
+  DialogButton
+} from "react-native-popup-dialog";
+import Sound from "react-native-sound";
 import Balloon from "../shapes/Balloon";
 import Sky from "../shapes/Sky";
 import BurstAnimation from "../animation/BurstAnimation";
 import ColorTextAnimation from "../animation/ColorTextAnimation";
+import * as Common from "../common";
 
 const BALLOON_NUMBER = 10;
 const SIDE_MARGIN = 15;
 const MAX_ROTATE_DEGREE = 15;
-const COLORS = ["red", "yellow", "green", "orange", "gray", "blue"];
-const COLORS_TEXT = ["KIRMIZI", "SARI", "YEŞİL", "TURUNCU", "GRİ", "MAVİ"];
-
+const COLORS = [
+  "red",
+  "yellow",
+  "green",
+  "blue",
+  "black",
+  "orange",
+  "rgb(230, 190, 210)",
+  "purple"
+];
+const COLORS_TEXT = [
+  "KIRMIZI",
+  "SARI",
+  "YEŞİL",
+  "MAVİ",
+  "SİYAH",
+  "TURUNCU",
+  "PEMBE",
+  "MOR"
+];
+const slideMenuAnimation = new SlideAnimation({
+  slideFrom: "top"
+});
 export default class AnimateController extends Component<{}> {
-  animateSpeed = 1.0;
+  animateSpeed = 2.0;
   balloonDensity = 1.0;
   balloonElements = [];
   balloonsCyPos = [];
@@ -30,7 +67,11 @@ export default class AnimateController extends Component<{}> {
   burstCy = 0.0;
   burstColor = COLORS[0];
   burstStart = false;
-  selectedColor = 0;
+  selectedColor = 2;
+  firstMenuCompleted = false;
+  secondMenuShowing = false;
+  colorsInScreen = [];
+  colorsInScreenRunCounter = 0;
 
   constructor(props) {
     super(props);
@@ -41,6 +82,10 @@ export default class AnimateController extends Component<{}> {
     this.animate = this.animate.bind(this);
     this.onBalloonPress = this.onBalloonPress.bind(this);
     this.burstFinish = this.burstFinish.bind(this);
+    this.onMenuPress = this.onMenuPress.bind(this);
+    this.onMenuDismissed = this.onMenuDismissed.bind(this);
+    this.onMenuResultPress = this.onMenuResultPress.bind(this);
+    this.showSettignsMenu = this.showSettignsMenu.bind(this);
     //this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     for (var i = 0; i < BALLOON_NUMBER; i++) {
@@ -52,10 +97,42 @@ export default class AnimateController extends Component<{}> {
     }
   }
 
+  initializeSound() {
+    this.wrongAnswerSound = new Sound(
+      "wrong_answer.mp3",
+      Sound.MAIN_BUNDLE,
+      function(error) {
+        if (error) {
+          console.log("failed to load the sound", error);
+          return;
+        }
+        // loaded successfully
+        // console.log(
+        //  "duration in seconds: " +
+        //    this.wrongAnswerSound.getDuration() +
+        //    "number of channels: " +
+        //    this.wrongAnswerSound.getNumberOfChannels() +
+        //    " " +
+        //    this.wrongAnswerSound.getVolume()
+        // );
+      }.bind(this)
+    );
+
+    // Reduce the volume by half
+    this.wrongAnswerSound.setVolume(0.5);
+    // console.log("Volume after setVolume: " + this.wrongAnswerSound.getVolume());
+
+    // Position the sound to the full right in a stereo field
+    this.wrongAnswerSound.setPan(1);
+  }
+
   componentDidMount() {
     // this.updateWindowDimensions();
     // window.addEventListener("resize", this.updateWindowDimensions);
-    this.animateTimer = setInterval(() => this.animate(), 30);
+    this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
+    this.randomNumber1 = this.randomBetween(1, 20);
+    this.randomNumber2 = this.randomBetween(1, 20);
+    this.initializeSound();
   }
 
   componentWillMount() {
@@ -66,6 +143,7 @@ export default class AnimateController extends Component<{}> {
   componentWillUnmount() {
     // window.removeEventListener("resize", this.updateWindowDimensions);
     clearInterval(this.animateTimer);
+    this.wrongAnswerSound.release();
   }
 
   updateWindowDimensions() {
@@ -109,6 +187,25 @@ export default class AnimateController extends Component<{}> {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  randomIn(values) {
+    const max = values.length - 1;
+    return values[Math.floor(Math.random() * max)];
+  }
+
+  randomInExcept(values, exceptNumber) {
+    const max = values.length - 1;
+    let randomNumber = values[Math.floor(Math.random() * max)];
+
+    if (randomNumber == exceptNumber) {
+      if (exceptNumber == max) {
+        randomNumber--;
+      } else {
+        randomNumber++;
+      }
+    }
+    return randomNumber;
+  }
+
   randomBetweenExcept(min, max, exceptNumber) {
     let randomNumber = Math.floor(Math.random() * (max - min) + min);
 
@@ -125,6 +222,14 @@ export default class AnimateController extends Component<{}> {
   generateBalloonsPos() {
     let balloonNumberInTheScreen = 0;
     let animateBegin = this.state.yOffset > 0.0;
+    let colorsInScreenRun = false;
+
+    this.colorsInScreenRunCounter++;
+    if (this.colorsInScreenRunCounter % 25 == 0) {
+      colorsInScreenRun = true;
+      this.colorsInScreen = [];
+      this.colorsInScreenRunCounter = 0;
+    }
 
     for (var i = 0; i < this.balloonNumber && animateBegin; i++) {
       this.balloonsCyPos[i] -= this.state.yOffset;
@@ -137,6 +242,7 @@ export default class AnimateController extends Component<{}> {
       }
       if (this.balloonsCyPos[i] > this.newBalloonYThreshold) {
         balloonNumberInTheScreen++;
+        this.colorsInScreen.push(this.balloonsColorIndex[i]);
       }
     }
 
@@ -184,6 +290,8 @@ export default class AnimateController extends Component<{}> {
     }
   }
 
+  getColorsInScreen() {}
+
   onBalloonPress(balloonIndex) {
     if (this.balloonsColorIndex[balloonIndex] == this.selectedColor) {
       this.burstCx = this.balloonsCxPos[balloonIndex];
@@ -191,19 +299,109 @@ export default class AnimateController extends Component<{}> {
       this.burstColor = COLORS[this.balloonsColorIndex[balloonIndex]];
       this.burstStart = true;
       this.balloonsCyPos[balloonIndex] = -1.1 * this.ry;
-      this.selectedColor = this.randomBetweenExcept(
-        0,
-        COLORS.length - 1,
+      this.selectedColor = this.randomInExcept(
+        this.colorsInScreen,
         this.selectedColor
       );
-      console.log("BALLOON PRESSED!!!");
+    } else {
+      this.wrongAnswerSound.play(
+        function(success) {
+          if (success) {
+            // console.log("successfully finished playing");
+          } else {
+            console.log("playback failed due to audio decoding errors");
+            // reset the player to its uninitialized state (android only)
+            // this is the only option to recover after an error occured and use the player again
+            this.wrongAnswerSound.reset();
+          }
+        }.bind(this)
+      );
+    }
+  }
+
+  onMenuPress() {
+    clearInterval(this.animateTimer);
+    this.menuDialog.show();
+  }
+
+  onMenuDismissed() {
+    if (this.firstMenuCompleted) {
+      this.menuTextInput = "";
+      this.menuTextInputObj.clear();
+      this.randomNumber1 = this.randomBetween(5, 40);
+      this.randomNumber2 = this.randomBetween(5, 40);
+      setTimeout(this.showSettignsMenu, 500);
+      this.animate();
+    } else {
+      this.secondMenuShowing = false;
+      this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
+    }
+
+    Keyboard.dismiss();
+  }
+
+  onMenuResultPress() {
+    if (
+      this.firstMenuCompleted == false &&
+      this.randomNumber1 + this.randomNumber2 == parseInt(this.menuTextInput)
+    ) {
+      this.firstMenuCompleted = true;
+      this.menuDialog.dismiss();
+    } else if (this.secondMenuShowing) {
+      this.menuDialog.dismiss();
+    }
+  }
+
+  showSettignsMenu() {
+    this.menuDialog.show();
+    this.firstMenuCompleted = false;
+    this.secondMenuShowing = true;
+  }
+
+  onMenuTextInputChanged(text) {
+    this.menuTextInput = text;
+    if (this.menuTextInput.length == 2) {
+      Keyboard.dismiss();
+    }
+  }
+
+  renderSettingsMenuComponent() {
+    if (this.firstMenuCompleted) {
+      return (
+        <View style={styles.popupMenu}>
+          <Text style={styles.sumText}>Hız:</Text>
+          <Slider
+            minimumValue={1}
+            maximumValue={3}
+            style={styles.speedSlider}
+            onValueChange={value => {
+              this.animateSpeed = value;
+            }}
+            value={this.animateSpeed}
+            step={1}
+          />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.popupMenu}>
+          <Text style={styles.sumText}>
+            {this.randomNumber1} + {this.randomNumber2} =
+          </Text>
+          <TextInput
+            style={styles.menuTextInput}
+            keyboardType="numeric"
+            onChangeText={text => this.onMenuTextInputChanged(text)}
+            ref={textInput => {
+              this.menuTextInputObj = textInput;
+            }}
+          />
+        </View>
+      );
     }
   }
 
   burstFinish() {
-    // this.burstCx = 0.0;
-    // this.burstCy = 0.0;
-    // this.burstColor = COLORS[0];
     this.burstStart = false;
   }
 
@@ -211,6 +409,12 @@ export default class AnimateController extends Component<{}> {
     this.renderBalloons();
     return (
       <Svg height={this.screenHeight} width={this.screenWidth}>
+        <TouchableHighlight onPress={this.onMenuPress}>
+          <Image
+            style={styles.button}
+            source={require("../rsc/image/menu32x.png")}
+          />
+        </TouchableHighlight>
         <Sky
           width={this.screenWidth}
           height={this.screenHeight}
@@ -229,8 +433,6 @@ export default class AnimateController extends Component<{}> {
           burstFinish={this.burstFinish}
         />
         <ColorTextAnimation
-          cx={0}
-          cy={0}
           color={COLORS[this.selectedColor]}
           colorText={COLORS_TEXT[this.selectedColor]}
           animateSpeed={this.animateSpeed}
@@ -251,7 +453,68 @@ export default class AnimateController extends Component<{}> {
             />
           );
         })}
+        <Circle
+          cx="26"
+          cy="26"
+          r="16"
+          strokeWidth="1"
+          opacity="0"
+          onPress={this.onMenuPress}
+        />
+        <PopupDialog
+          dialogTitle={<DialogTitle title="Ayarlar" />}
+          width={0.5}
+          height={0.5}
+          dialogStyle={{ top: 0 }}
+          onDismissed={this.onMenuDismissed}
+          ref={popupDialog => {
+            this.menuDialog = popupDialog;
+          }}
+          dialogAnimation={slideMenuAnimation}
+          actions={[
+            <DialogButton
+              text="TAMAM"
+              align="center"
+              onPress={this.onMenuResultPress}
+              key="0"
+            />
+          ]}
+        >
+          {this.renderSettingsMenuComponent()}
+        </PopupDialog>
       </Svg>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    marginTop: 10,
+    left: 10
+  },
+  popupMenu: {
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  sumText: {
+    fontSize: 32
+  },
+  menuTextInput: {
+    height: 40,
+    width: 100,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginLeft: 10,
+    fontSize: 28
+  },
+  speedSlider: {
+    marginLeft: 10,
+    width: 100
+  },
+  dialogStye: {
+    marginTop: 0
+  }
+});

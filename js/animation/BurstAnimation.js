@@ -68,50 +68,29 @@ export default class BurstAnimation extends Component<{}> {
 					return;
 				}
 				// loaded successfully
-				console.log(
-					"duration in seconds: " +
-						this.burstSound.getDuration() +
-						"number of channels: " +
-						this.burstSound.getNumberOfChannels() +
-						" " +
-						this.burstSound.getVolume()
-				);
+				// console.log(
+				// 	"duration in seconds: " +
+				// 		this.burstSound.getDuration() +
+				// 		"number of channels: " +
+				// 		this.burstSound.getNumberOfChannels() +
+				// 		" " +
+				// 		this.burstSound.getVolume()
+				// );
 			}.bind(this)
 		);
 
 		// Reduce the volume by half
 		this.burstSound.setVolume(0.5);
-		console.log("Volume after setVolume: " + this.burstSound.getVolume());
+		// console.log("Volume after setVolume: " + this.burstSound.getVolume());
 
 		// Position the sound to the full right in a stereo field
 		this.burstSound.setPan(1);
-
-		this.wrongAnswerSound = new Sound(
-			"wrong_answer.mp3",
-			Sound.MAIN_BUNDLE,
-			function(error) {
-				if (error) {
-					console.log("failed to load the sound", error);
-					return;
-				}
-				// loaded successfully
-				console.log(
-					"duration in seconds: " +
-						this.wrongAnswerSound.getDuration() +
-						"number of channels: " +
-						this.wrongAnswerSound.getNumberOfChannels() +
-						" " +
-						this.wrongAnswerSound.getVolume()
-				);
-			}.bind(this)
-		);
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.animateTimer);
 		this.props.burstFinish();
 		this.burstSound.release();
-		this.wrongAnswerSound.release();
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -133,20 +112,12 @@ export default class BurstAnimation extends Component<{}> {
 		return this.state.animation.Value != 0;
 	}
 
-	// componentDidUpdate(prevProps, prevState) {
-	// 	if (prevProps.burstStart != this.props.burstStart) {
-	// 		if (this.props.burstStart) {
-	// 			this._explode();
-	// 		}
-	// 	}
-	// }
-
 	_explode() {
 		Vibration.vibrate(VIBRATE_PATTERN);
 		this.burstSound.play(
 			function(success) {
 				if (success) {
-					console.log("successfully finished playing");
+					// console.log("successfully finished playing");
 				} else {
 					console.log("playback failed due to audio decoding errors");
 					// reset the player to its uninitialized state (android only)
