@@ -1,0 +1,661 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"menu",
+				"menuTextInput"
+			],
+			[
+				"onm",
+				"onMenuTextInputChanged"
+			],
+			[
+				"margin",
+				"marginTop"
+			],
+			[
+				"ran",
+				"randomIn"
+			],
+			[
+				"colorI",
+				"colorsInScreenRun"
+			],
+			[
+				"colorsInScreenR",
+				"colorsInScreenRunCounter"
+			],
+			[
+				"wrn",
+				"wrongAnswerSound"
+			],
+			[
+				"sho",
+				"showSettignsMenu"
+			],
+			[
+				"soh",
+				"showSettignsMenu"
+			],
+			[
+				"rende",
+				"renderSettingsMenuComponent"
+			],
+			[
+				"te",
+				"textInput"
+			],
+			[
+				"rand",
+				"randomNumber2"
+			],
+			[
+				"onme",
+				"onMenuResultPress"
+			],
+			[
+				"onmen",
+				"onMenuResultPress"
+			],
+			[
+				"Dial",
+				"DialogButton"
+			],
+			[
+				"men",
+				"menuTextInput"
+			],
+			[
+				"rando",
+				"randomNumber2"
+			],
+			[
+				"onMen",
+				"onMenuDismissed"
+			],
+			[
+				"v",
+				"View"
+			],
+			[
+				"bur",
+				"burstWidth"
+			],
+			[
+				"COLOR",
+				"COLORS_TEXT"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"burst",
+				"burstColor"
+			],
+			[
+				"anima",
+				"animateSpeed"
+			],
+			[
+				"color",
+				"colorSound"
+			],
+			[
+				"balloonsC",
+				"balloonsColorIndex"
+			],
+			[
+				"balloonsc",
+				"balloonsColorIndex"
+			],
+			[
+				"balloon",
+				"balloonsColorIndex"
+			],
+			[
+				"ne",
+				"newBallooonIndex"
+			],
+			[
+				"random",
+				"randomBetweenExcept"
+			],
+			[
+				"ex",
+				"exceptNumber"
+			],
+			[
+				"wro",
+				"wrongAnswerSound"
+			],
+			[
+				"burs",
+				"burstSound"
+			],
+			[
+				"part",
+				"particleRadius"
+			],
+			[
+				"ani",
+				"Animated"
+			],
+			[
+				"circ",
+				"circleRadius"
+			],
+			[
+				"par",
+				"particleRadius"
+			],
+			[
+				"dev",
+				"deviceHeight"
+			],
+			[
+				"devi",
+				"deviceWidth"
+			],
+			[
+				"cx",
+				"cx"
+			],
+			[
+				"anim",
+				"animationDurationInMsec"
+			],
+			[
+				"to",
+				"TouchableWithoutFeedback"
+			],
+			[
+				"heart",
+				"heart_fill"
+			],
+			[
+				"hear",
+				"heart_y"
+			],
+			[
+				"REACT",
+				"ReactDOM"
+			],
+			[
+				"partic",
+				"particleXOffset"
+			],
+			[
+				"PARTicle",
+				"particleXOffset"
+			],
+			[
+				"XO",
+				"burstXOffset"
+			],
+			[
+				"bu",
+				"burstStart"
+			],
+			[
+				"burstc",
+				"burstColor"
+			],
+			[
+				"ballo",
+				"balloonIndex"
+			],
+			[
+				"time",
+				"timeElapsedInMsec"
+			],
+			[
+				"an",
+				"animationDurationInMsec"
+			],
+			[
+				"prev",
+				"prevProps"
+			],
+			[
+				"get",
+				"getTween"
+			],
+			[
+				"_",
+				"_createParticlePool"
+			],
+			[
+				"c",
+				"cx"
+			],
+			[
+				"colo",
+				"COLORS"
+			],
+			[
+				"animate",
+				"animateBegin"
+			],
+			[
+				"anime",
+				"animateBegin"
+			],
+			[
+				"ball",
+				"balloonNumber"
+			],
+			[
+				"balloo",
+				"balloonNumber"
+			],
+			[
+				"rotate",
+				"rotateOffset"
+			],
+			[
+				"balloonsr",
+				"balloonsRotateSign"
+			],
+			[
+				"balloons",
+				"balloonsRotateDegree"
+			],
+			[
+				"ma",
+				"MAX_ROTATE_DEGREE"
+			],
+			[
+				"start",
+				"startY"
+			],
+			[
+				"ballon",
+				"balloonsCyPos"
+			],
+			[
+				"sc",
+				"screenWidth"
+			],
+			[
+				"render",
+				"renderBalloons"
+			],
+			[
+				"Ballo",
+				"Balloons"
+			],
+			[
+				"S",
+				"SVG"
+			],
+			[
+				"Scr",
+				"screenHeight"
+			],
+			[
+				"scre",
+				"screenHeight"
+			],
+			[
+				"numb",
+				"numberProp"
+			],
+			[
+				"sky",
+				"skyPathPoints"
+			],
+			[
+				"cloud",
+				"cloudNumber"
+			],
+			[
+				"G",
+				"GetClouds"
+			],
+			[
+				"d",
+				"dString"
+			],
+			[
+				"for",
+				"for\tfor (…) {…}"
+			],
+			[
+				"g",
+				"G"
+			],
+			[
+				"Pro",
+				"PropTypes"
+			],
+			[
+				"red",
+				"redBalloon"
+			],
+			[
+				"login",
+				"loginFail"
+			],
+			[
+				"Text",
+				"TextInput"
+			],
+			[
+				"fun",
+				"fun\tFunction"
+			],
+			[
+				"ren",
+				"render"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 27.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/emrah/Workspace/LearnColorsByBalloons"
+	],
+	"file_history":
+	[
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/controller/AnimateController.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/animation/ColorTextAnimation.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native-popup-dialog/src/PopupDialog.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native-popup-dialog/src/components/Dialog.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/animation/BurstAnimation.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/main.js",
+		"/Users/emrah/Desktop/TEMP/copyPaste.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/common/index.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/package.json",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/shapes/Balloon.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Components/Touchable/TouchableWithoutFeedback.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/index.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Vibration/Vibration.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Vibration/VibrationIOS.ios.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Components/Touchable/Touchable.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/Particles.jsx",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/particle-explosions/dist/particle-explosions.min.js",
+		"/Users/emrah/Downloads/love_explosion.json",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native-canvas/dist/index.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/particles/particle.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/presslabs-particles-icons/dist/icons/particles-data.json",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/package.json",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/buildlog.txt",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/lib/particle.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/particles/add.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/particles/index.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/particles/particles.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-particles-icons/particles/particles_alt.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/package.json",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/src/components/Particles.jsx",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Reusable.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/src/containers/AppContainer.jsx",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/src/components/index.jsx",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/Particles copy.jsx",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/animation/BurstAnimation_orj.js",
+		"/Users/emrah/Downloads/react-native-svg-master/elements/Use.js",
+		"/Users/emrah/Downloads/react-native-svg-master/elements/Symbol.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/index.jsx",
+		"/Users/emrah/Downloads/react-particles-experiment-master/index.html",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/containers/AppContainer.jsx",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/actions/index.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/node_modules/d3/package.json",
+		"/Users/emrah/Downloads/react-particles-experiment-master/node_modules/d3-request/package.json",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/reducers/index.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/node_modules/d3/package.json",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/package.json",
+		"/Users/emrah/Downloads/react-particles-experiment-master/devServer.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/static/bundle.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/node_modules/xmlhttprequest/lib/XMLHttpRequest.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/index.jsx",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/animation/BurstParticle.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/webpack.config.dev.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master 2/webpack.config.prod.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/Particles.js",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/Footer.jsx",
+		"/Users/emrah/Downloads/react-particles-experiment-master/src/components/Header.jsx",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/gsap/TweenMax.js",
+		"/Users/emrah/Downloads/react-native-svg-example/main.js",
+		"/Users/emrah/Desktop/confetti.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/shapes/Sky.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Circle.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples.js",
+		"/Users/emrah/Workspace/ReactHelloWorld/PropertyFinder/index.ios.js",
+		"/Users/emrah/Workspace/ReactHelloWorld/PropertyFinder/index.android.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Core/Timers/JSTimers.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/TouchEvents.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Text.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Image.js",
+		"/Users/emrah/Downloads/react-native-svg-example/index.ios.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/prop-types/prop-types.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/prop-types/index.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/common/Template.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/common/Common.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/shapes/Common.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/bestsellers/BookList.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/bestsellers/BookItem.js",
+		"/Users/emrah/Downloads/react-native-svg-example/node_modules/prop-types/prop-types.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/flashcards/src_checkpoint_04/components/Input.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/flashcards/src_checkpoint_04/components/HeadingText.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/flashcards/src_checkpoint_04/components/Button.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/flashcards/src_checkpoint_04/components/Flashcards.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/flashcards/index.js",
+		"/Users/emrah/Downloads/react-native-svg-master/elements/Ellipse.js",
+		"/Users/emrah/Downloads/react-native-svg-example/node_modules/prop-types/index.js",
+		"/Users/emrah/Downloads/react-native-svg-master/lib/props.js",
+		"/Users/emrah/Downloads/react-native-svg-master/elements/Polygon.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/bestsellers/index.js",
+		"/Volumes/TOSHIBA_WIN/OSX/Dropbox/Kaynak/ReactNative/LearningReactNativebyBonnieEisenman/Examples/learning-react-native-master/src/bestsellers/BookSectionList.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/node_modules/react-native/Libraries/Renderer/ReactNativeFiber-dev.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/js/Shapes/Balloon.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Gradients.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/SVGShapes.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/App.js",
+		"/Users/emrah/Workspace/LearnColorsByBalloons/app.json",
+		"/Users/emrah/Downloads/react-native-svg-example/index.android.js",
+		"/Users/emrah/Downloads/react-native-svg-example/examples/Ellipse.js",
+		"/Users/emrah/Downloads/untitled.html",
+		"/Users/emrah/Workspace/Depends/js/components/Flashcards.js",
+		"/Users/emrah/Downloads/Amazfit apps/Timer.apk",
+		"/Users/emrah/Workspace/Depends/js/components/DeckScreen/index.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/index.ios.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/Main.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/reducers/IslemReducers.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/actions/types.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/components/Islem.js",
+		"/Users/emrah/Workspace/Depends/js/reducers/index.js",
+		"/Users/emrah/Workspace/Depends/js/reducers/decks.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/actions/index.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/actions/islemAction.js",
+		"/Users/emrah/Downloads/ReactNative-Redux-master/src/reducers/index.js",
+		"/Users/emrah/Workspace/Depends/js/reducers/reviews.js",
+		"/Users/emrah/Workspace/Depends/js/storage/decks.js",
+		"/Users/emrah/Workspace/Depends/js/data/Deck.js",
+		"/Users/emrah/Workspace/Depends/node_modules/redux/src/createStore.js",
+		"/Users/emrah/Workspace/Depends/index.js",
+		"/Users/emrah/Workspace/Depends/App.js",
+		"/Users/emrah/Workspace/Depends/js/components/Header/Logo.js",
+		"/Users/emrah/Downloads/learning-react-native-master/src/flashcards/index.js",
+		"/Users/emrah/Downloads/learning-react-native-master/src/flashcards/src_checkpoint_04/components/Flashcards.js",
+		"/Users/emrah/Downloads/learning-react-native-master/src/smarter-weather/PhotoBackdrop/index.js",
+		"/Users/emrah/Workspace/Depends/.flowconfig",
+		"/Users/emrah/Workspace/WeatherProject/index.ios.js",
+		"/Users/emrah/Workspace/WeatherProject/WeatherProject.js",
+		"/Users/emrah/Workspace/WeatherProject/PanDemo.js",
+		"/Users/emrah/Workspace/Depends/package.json",
+		"/Users/emrah/Workspace/Depends/__tests__/App.js",
+		"/Users/emrah/Workspace/WeatherProject/PressDemo.js",
+		"/Users/emrah/Downloads/learning-react-native-master/src/touch/index.js"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 102.0
+	},
+	"pinned_build_system": "",
+	"project": "LearnColorsByBalloons.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 187.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

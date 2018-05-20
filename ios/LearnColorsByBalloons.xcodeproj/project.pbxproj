@@ -13,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* LearnColorsByBalloonsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LearnColorsByBalloonsTests.m */; };
+		0929FF9CA7264785AEF1EAB9 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A8FC56E40426D809C2BF2 /* libRNAdMobManager.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -37,11 +38,13 @@
 		7BC25F16AF2247DEAE665582 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144DD33A5964A4E92883BEC /* libRNSound.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		B1021D7220AD4A3C003DE47C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1021D4820AD4A3B003DE47C /* GoogleMobileAds.framework */; };
 		B1566169207BF790000A3B88 /* balloon_burst_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */; };
 		B156616A207BF790000A3B88 /* wrong_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1566168207BF790000A3B88 /* wrong_answer.mp3 */; };
 		B1B566942071EC3B004D2545 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B5666C2071EC1E004D2545 /* libART.a */; };
 		B1C1601220911EB400D27368 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C1601120911B2400D27368 /* libRNSVG-tvOS.a */; };
 		B1CFBA271FFDFE560086FBE2 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		B1E5EB0B20A0EA1F00B3A926 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */; };
 		E3D8BA34D233497E85586005 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC52930B3ECC4EEB9BE71605 /* libRNSVG.a */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +343,13 @@
 			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
 			remoteInfo = "fishhook-tvOS";
 		};
+		B1E4BB3020AA22FD008737E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE67B7BA61FE4BFF9B75AF74 /* RNAdMobManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A96DA7741C146D7200FC639B;
+			remoteInfo = RNAdMobManager;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -366,15 +376,19 @@
 		2D02E47B1E0B4A5D006451C7 /* LearnColorsByBalloons-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LearnColorsByBalloons-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* LearnColorsByBalloons-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LearnColorsByBalloons-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4144DD33A5964A4E92883BEC /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
+		520A8FC56E40426D809C2BF2 /* libRNAdMobManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAdMobManager.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B1021D4820AD4A3B003DE47C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = balloon_burst_sound.mp3; path = rsc/sound/balloon_burst_sound.mp3; sourceTree = "<group>"; };
 		B1566168207BF790000A3B88 /* wrong_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wrong_answer.mp3; path = rsc/sound/wrong_answer.mp3; sourceTree = "<group>"; };
 		B1B566662071EC1D004D2545 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = ../../../Downloads/LCBB_LOGO/LaunchScreen.png; sourceTree = "<group>"; };
 		BD6F1760CEB54C33A946C1BC /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		DC52930B3ECC4EEB9BE71605 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
+		EE67B7BA61FE4BFF9B75AF74 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
 		F243C85338FA41979E616BC6 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -406,6 +420,8 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				7BC25F16AF2247DEAE665582 /* libRNSound.a in Frameworks */,
 				E3D8BA34D233497E85586005 /* libRNSVG.a in Frameworks */,
+				B1021D7220AD4A3C003DE47C /* GoogleMobileAds.framework in Frameworks */,
+				0929FF9CA7264785AEF1EAB9 /* libRNAdMobManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,8 +533,7 @@
 		13B07FAE1A68108700A75B9A /* LearnColorsByBalloons */ = {
 			isa = PBXGroup;
 			children = (
-				B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */,
-				B1566168207BF790000A3B88 /* wrong_answer.mp3 */,
+				B15BA2F4209F89C500840C88 /* res */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -572,6 +587,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B1021D4820AD4A3B003DE47C /* GoogleMobileAds.framework */,
 				B1B566662071EC1D004D2545 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -587,6 +603,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				BD6F1760CEB54C33A946C1BC /* RNSound.xcodeproj */,
 				F243C85338FA41979E616BC6 /* RNSVG.xcodeproj */,
+				EE67B7BA61FE4BFF9B75AF74 /* RNAdMobManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -642,12 +659,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B15BA2F4209F89C500840C88 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */,
+				B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */,
+				B1566168207BF790000A3B88 /* wrong_answer.mp3 */,
+			);
+			name = res;
+			sourceTree = "<group>";
+		};
 		B1B05DD4207A1B19000307D2 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				4144DD33A5964A4E92883BEC /* libRNSound.a */,
 				DC52930B3ECC4EEB9BE71605 /* libRNSVG.a */,
 				0F4AAE2C485D48C9A5C8B4B7 /* libRNSVG-tvOS.a */,
+				520A8FC56E40426D809C2BF2 /* libRNAdMobManager.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -674,6 +702,14 @@
 			children = (
 				B1C1600F20911B2400D27368 /* libRNSVG.a */,
 				B1C1601120911B2400D27368 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1E4BB2D20AA22FD008737E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1E4BB3120AA22FD008737E6 /* libRNAdMobManager.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -846,6 +882,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = B1E4BB2D20AA22FD008737E6 /* Products */;
+					ProjectRef = EE67B7BA61FE4BFF9B75AF74 /* RNAdMobManager.xcodeproj */;
 				},
 				{
 					ProductGroup = B1B05DFC207A1B1A000307D2 /* Products */;
@@ -1147,6 +1187,13 @@
 			remoteRef = B1CFBA411FFDFE560086FBE2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B1E4BB3120AA22FD008737E6 /* libRNAdMobManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAdMobManager.a;
+			remoteRef = B1E4BB3020AA22FD008737E6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1162,6 +1209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1566169207BF790000A3B88 /* balloon_burst_sound.mp3 in Resources */,
+				B1E5EB0B20A0EA1F00B3A926 /* LaunchScreen.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B156616A207BF790000A3B88 /* wrong_answer.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
@@ -1292,12 +1340,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = LearnColorsByBalloonsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1321,12 +1371,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = LearnColorsByBalloonsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1347,10 +1399,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = WHLKMJ86XR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = LearnColorsByBalloons/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1371,10 +1428,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WHLKMJ86XR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = LearnColorsByBalloons/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1406,11 +1468,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "LearnColorsByBalloons-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1443,11 +1507,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "LearnColorsByBalloons-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1481,6 +1547,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.LearnColorsByBalloons-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1506,6 +1573,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

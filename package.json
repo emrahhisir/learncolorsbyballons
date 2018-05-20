@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "16.0.0",
     "react-native": "0.51.0",
+    "react-native-admob": "^2.0.0-beta.5",
     "react-native-popup-dialog": "^0.11.46",
     "react-native-sound": "^0.10.9",
     "react-native-svg": "^6.0.1-rc.1"

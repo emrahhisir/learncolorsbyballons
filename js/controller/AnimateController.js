@@ -26,10 +26,12 @@ import Sky from "../shapes/Sky";
 import BurstAnimation from "../animation/BurstAnimation";
 import ColorTextAnimation from "../animation/ColorTextAnimation";
 import * as Common from "../common";
+import Example from "./AdsController.js";
 
 const BALLOON_NUMBER = 10;
 const SIDE_MARGIN = 15;
 const MAX_ROTATE_DEGREE = 15;
+const ADS_SHOW_THRESHOLD = 100;
 const COLORS = [
   "red",
   "yellow",
@@ -72,6 +74,7 @@ export default class AnimateController extends Component<{}> {
   secondMenuShowing = false;
   colorsInScreen = [];
   colorsInScreenRunCounter = 0;
+  balloonBurstCounter = 0;
 
   constructor(props) {
     super(props);
@@ -194,27 +197,28 @@ export default class AnimateController extends Component<{}> {
 
   randomInExcept(values, exceptNumber) {
     const max = values.length - 1;
-    let randomNumber = values[Math.floor(Math.random() * max)];
+    let randomNumber = Math.floor(Math.random() * max);
+    let returnValue = values[randomNumber];
 
-    if (randomNumber == exceptNumber) {
-      if (exceptNumber == max) {
-        randomNumber--;
+    if (returnValue == exceptNumber) {
+      if (randomNumber == max) {
+        returnValue = values[randomNumber - 1];
       } else {
-        randomNumber++;
+        returnValue = values[randomNumber + 1];
+      }
+
+      if (returnValue == exceptNumber) {
+        return this.randomInExcept(values, exceptNumber);
       }
     }
-    return randomNumber;
+    return returnValue;
   }
 
-  randomBetweenExcept(min, max, exceptNumber) {
+  randomBetweenExcept(min, max, exceptNumber1, exceptNumber2) {
     let randomNumber = Math.floor(Math.random() * (max - min) + min);
 
-    if (randomNumber == exceptNumber) {
-      if (exceptNumber == max) {
-        randomNumber--;
-      } else {
-        randomNumber++;
-      }
+    if (randomNumber == exceptNumber1 || randomNumber == exceptNumber2) {
+      return this.randomBetweenExcept(min, max, exceptNumber1, exceptNumber2);
     }
     return randomNumber;
   }
@@ -242,7 +246,12 @@ export default class AnimateController extends Component<{}> {
       }
       if (this.balloonsCyPos[i] > this.newBalloonYThreshold) {
         balloonNumberInTheScreen++;
-        this.colorsInScreen.push(this.balloonsColorIndex[i]);
+        if (
+          this.balloonsCyPos[i] < this.screenHeight &&
+          this.balloonsCyPos[i] > this.newBalloonYThreshold
+        ) {
+          this.colorsInScreen.push(this.balloonsColorIndex[i]);
+        }
       }
     }
 
@@ -262,11 +271,16 @@ export default class AnimateController extends Component<{}> {
           this.balloonsRotateDegree[newBalloonIndex]
         );
         let previousBalloonIndex =
-          newBalloonIndex == 0 ? 0 : newBalloonIndex - 1;
+          newBalloonIndex == 0 ? 1 : newBalloonIndex - 1;
+        let nextBalloonIndex =
+          newBalloonIndex == BALLOON_NUMBER - 1
+            ? BALLOON_NUMBER - 1
+            : newBalloonIndex + 1;
         this.balloonsColorIndex[newBalloonIndex] = this.randomBetweenExcept(
           0,
           COLORS.length - 1,
-          this.balloonsColorIndex[previousBalloonIndex]
+          this.balloonsColorIndex[previousBalloonIndex],
+          this.balloonsColorIndex[nextBalloonIndex]
         );
       }
       balloonNumberInTheScreen++;
@@ -290,8 +304,6 @@ export default class AnimateController extends Component<{}> {
     }
   }
 
-  getColorsInScreen() {}
-
   onBalloonPress(balloonIndex) {
     if (this.balloonsColorIndex[balloonIndex] == this.selectedColor) {
       this.burstCx = this.balloonsCxPos[balloonIndex];
@@ -303,6 +315,7 @@ export default class AnimateController extends Component<{}> {
         this.colorsInScreen,
         this.selectedColor
       );
+      this.balloonBurstCounter++;
     } else {
       this.wrongAnswerSound.play(
         function(success) {
@@ -405,85 +418,95 @@ export default class AnimateController extends Component<{}> {
     this.burstStart = false;
   }
 
-  render() {
-    this.renderBalloons();
-    return (
-      <Svg height={this.screenHeight} width={this.screenWidth}>
-        <TouchableHighlight onPress={this.onMenuPress}>
-          <Image
-            style={styles.button}
-            source={require("../rsc/image/menu32x.png")}
+  renderConditional() {
+    if (this.balloonBurstCounter > ADS_SHOW_THRESHOLD) {
+      this.balloonBurstCounter = 0;
+      clearInterval(this.animateTimer);
+      return <Example />;
+    } else {
+      this.renderBalloons();
+      return (
+        <Svg height={this.screenHeight} width={this.screenWidth}>
+          <TouchableHighlight onPress={this.onMenuPress}>
+            <Image
+              style={styles.button}
+              source={require("../rsc/image/menu32x.png")}
+            />
+          </TouchableHighlight>
+          <Sky
+            width={this.screenWidth}
+            height={this.screenHeight}
+            cloudWidth="0"
+            cloudHeight="0"
+            skyColor="#80c6e6"
+            cloudColor="#ffffff"
           />
-        </TouchableHighlight>
-        <Sky
-          width={this.screenWidth}
-          height={this.screenHeight}
-          cloudWidth="0"
-          cloudHeight="0"
-          skyColor="#80c6e6"
-          cloudColor="#ffffff"
-        />
-        <BurstAnimation
-          cx={this.burstCx}
-          cy={this.burstCy}
-          color={this.burstColor}
-          burstStart={this.burstStart}
-          animateSpeed={this.animateSpeed}
-          burstWidth={this.burstWidth}
-          burstFinish={this.burstFinish}
-        />
-        <ColorTextAnimation
-          color={COLORS[this.selectedColor]}
-          colorText={COLORS_TEXT[this.selectedColor]}
-          animateSpeed={this.animateSpeed}
-          fontSize={this.burstWidth}
-        />
-        {this.balloonElements.map(balloon => {
-          return (
-            <Balloon
-              cx={balloon.cx}
-              cy={balloon.cy}
-              rx={balloon.rx}
-              ry={balloon.ry}
-              color={balloon.color}
-              rotateDegree={balloon.rotateDegree}
-              key={balloon.key}
-              index={balloon.key}
-              onPress={this.onBalloonPress}
-            />
-          );
-        })}
-        <Circle
-          cx="26"
-          cy="26"
-          r="16"
-          strokeWidth="1"
-          opacity="0"
-          onPress={this.onMenuPress}
-        />
-        <PopupDialog
-          dialogTitle={<DialogTitle title="Ayarlar" />}
-          width={0.5}
-          height={0.5}
-          dialogStyle={{ top: 0 }}
-          onDismissed={this.onMenuDismissed}
-          ref={popupDialog => {
-            this.menuDialog = popupDialog;
-          }}
-          dialogAnimation={slideMenuAnimation}
-          actions={[
-            <DialogButton
-              text="TAMAM"
-              align="center"
-              onPress={this.onMenuResultPress}
-              key="0"
-            />
-          ]}
-        >
-          {this.renderSettingsMenuComponent()}
-        </PopupDialog>
-      </Svg>
-    );
+          <BurstAnimation
+            cx={this.burstCx}
+            cy={this.burstCy}
+            color={this.burstColor}
+            burstStart={this.burstStart}
+            animateSpeed={this.animateSpeed}
+            burstWidth={this.burstWidth}
+            burstFinish={this.burstFinish}
+          />
+          <ColorTextAnimation
+            color={COLORS[this.selectedColor]}
+            colorText={COLORS_TEXT[this.selectedColor]}
+            animateSpeed={this.animateSpeed}
+            fontSize={this.burstWidth}
+          />
+          {this.balloonElements.map(balloon => {
+            return (
+              <Balloon
+                cx={balloon.cx}
+                cy={balloon.cy}
+                rx={balloon.rx}
+                ry={balloon.ry}
+                color={balloon.color}
+                rotateDegree={balloon.rotateDegree}
+                key={balloon.key}
+                index={balloon.key}
+                onPress={this.onBalloonPress}
+              />
+            );
+          })}
+          <Circle
+            cx="26"
+            cy="26"
+            r="16"
+            strokeWidth="1"
+            opacity="0"
+            onPress={this.onMenuPress}
+          />
+          <PopupDialog
+            dialogTitle={<DialogTitle title="Ayarlar" />}
+            width={0.5}
+            height={0.5}
+            dialogStyle={{ top: 0 }}
+            onDismissed={this.onMenuDismissed}
+            ref={popupDialog => {
+              this.menuDialog = popupDialog;
+            }}
+            dialogAnimation={slideMenuAnimation}
+            actions={[
+              <DialogButton
+                text="TAMAM"
+                align="center"
+                onPress={this.onMenuResultPress}
+                key="0"
+              />
+            ]}
+          >
+            {this.renderSettingsMenuComponent()}
+          </PopupDialog>
+        </Svg>
+      );
+    }
+  }
+
+  render() {
+    return this.renderConditional();
   }
 }
 

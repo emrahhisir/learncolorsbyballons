@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { StyleSheet, Animated, View } from "react-native";
-import Art, { Surface, Group, Shape, Path } from "ReactNativeART";
 import Sound from "react-native-sound";
 import PropTypes from "prop-types";
 
-var AnimatedShape = Animated.createAnimatedComponent(Shape);
+const INITIAL_ANIMATE_VALUE = 0.0001;
 
 export default class ColorTextAnimation extends Component<{}> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			animation: new Animated.Value(0)
+			animation: new Animated.Value(INITIAL_ANIMATE_VALUE)
 		};
 		this._explode = this._explode.bind(this);
 	}
@@ -69,12 +68,12 @@ export default class ColorTextAnimation extends Component<{}> {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		if (nextProps.color != this.props.color) {
-			this.state.animation.setValue(0);
+			this.state.animation.setValue(INITIAL_ANIMATE_VALUE);
 			this._explode();
 			return true;
 		}
 
-		return this.state.animation.Value != 0;
+		return this.state.animation.Value != INITIAL_ANIMATE_VALUE;
 	}
 
 	_explode() {
