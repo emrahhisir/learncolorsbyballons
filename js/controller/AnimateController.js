@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 import {
   Dimensions,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   Image,
   StyleSheet,
   View,
@@ -26,9 +26,8 @@ import Sky from "../shapes/Sky";
 import BurstAnimation from "../animation/BurstAnimation";
 import ColorTextAnimation from "../animation/ColorTextAnimation";
 import * as Common from "../common";
-import Example from "./AdsController.js";
 
-const BALLOON_NUMBER = 10;
+const BALLOON_NUMBER = 8;
 const SIDE_MARGIN = 15;
 const MAX_ROTATE_DEGREE = 15;
 const ADS_SHOW_THRESHOLD = 100;
@@ -75,6 +74,7 @@ export default class AnimateController extends Component<{}> {
   colorsInScreen = [];
   colorsInScreenRunCounter = 0;
   balloonBurstCounter = 0;
+  testCounter = 0;
 
   constructor(props) {
     super(props);
@@ -164,7 +164,7 @@ export default class AnimateController extends Component<{}> {
     this.rx = (this.screenWidth - 2 * SIDE_MARGIN) / BALLOON_NUMBER / 2;
     this.ry = this.rx * 1.4;
     this.startCy = this.screenHeight + this.ry;
-    this.burstWidth = 2 * this.rx;
+    this.burstWidth = this.rx;
   }
 
   calculateRenderSizes() {
@@ -290,6 +290,7 @@ export default class AnimateController extends Component<{}> {
   renderBalloons() {
     this.calculateRenderSizes();
     this.generateBalloonsPos();
+    this.testCounter++;
 
     for (var i = 0; i < this.balloonNumber; i++) {
       this.balloonElements[i] = {
@@ -302,20 +303,29 @@ export default class AnimateController extends Component<{}> {
         key: i
       };
     }
+
+    if (this.testCounter > 100) {
+      this.testCounter = 0;
+      this.selectedColor = this.randomInExcept(
+        this.colorsInScreen,
+        this.selectedColor
+      );
+      this.onBalloonPress(0);
+    }
   }
 
   onBalloonPress(balloonIndex) {
-    if (this.balloonsColorIndex[balloonIndex] == this.selectedColor) {
+    if (/*this.balloonsColorIndex[balloonIndex] == this.selectedColor*/ true) {
       this.burstCx = this.balloonsCxPos[balloonIndex];
       this.burstCy = this.balloonsCyPos[balloonIndex];
       this.burstColor = COLORS[this.balloonsColorIndex[balloonIndex]];
       this.burstStart = true;
       this.balloonsCyPos[balloonIndex] = -1.1 * this.ry;
-      this.selectedColor = this.randomInExcept(
+      /*this.selectedColor = this.randomInExcept(
         this.colorsInScreen,
         this.selectedColor
       );
-      this.balloonBurstCounter++;
+      this.balloonBurstCounter++;*/
     } else {
       this.wrongAnswerSound.play(
         function(success) {
@@ -419,20 +429,10 @@ export default class AnimateController extends Component<{}> {
   }
 
   renderConditional() {
-    if (this.balloonBurstCounter > ADS_SHOW_THRESHOLD) {
-      this.balloonBurstCounter = 0;
-      clearInterval(this.animateTimer);
-      return <Example />;
-    } else {
-      this.renderBalloons();
-      return (
+    this.renderBalloons();
+    return (
+      <View height={this.screenHeight} width={this.screenWidth}>
         <Svg height={this.screenHeight} width={this.screenWidth}>
-          <TouchableHighlight onPress={this.onMenuPress}>
-            <Image
-              style={styles.button}
-              source={require("../rsc/image/menu32x.png")}
-            />
-          </TouchableHighlight>
           <Sky
             width={this.screenWidth}
             height={this.screenHeight}
@@ -450,12 +450,6 @@ export default class AnimateController extends Component<{}> {
             burstWidth={this.burstWidth}
             burstFinish={this.burstFinish}
           />
-          <ColorTextAnimation
-            color={COLORS[this.selectedColor]}
-            colorText={COLORS_TEXT[this.selectedColor]}
-            animateSpeed={this.animateSpeed}
-            fontSize={this.burstWidth}
-          />
           {this.balloonElements.map(balloon => {
             return (
               <Balloon
@@ -471,38 +465,42 @@ export default class AnimateController extends Component<{}> {
               />
             );
           })}
-          <Circle
-            cx="26"
-            cy="26"
-            r="16"
-            strokeWidth="1"
-            opacity="0"
-            onPress={this.onMenuPress}
-          />
-          <PopupDialog
-            dialogTitle={<DialogTitle title="Ayarlar" />}
-            width={0.5}
-            height={0.5}
-            dialogStyle={{ top: 0 }}
-            onDismissed={this.onMenuDismissed}
-            ref={popupDialog => {
-              this.menuDialog = popupDialog;
-            }}
-            dialogAnimation={slideMenuAnimation}
-            actions={[
-              <DialogButton
-                text="TAMAM"
-                align="center"
-                onPress={this.onMenuResultPress}
-                key="0"
-              />
-            ]}
-          >
-            {this.renderSettingsMenuComponent()}
-          </PopupDialog>
         </Svg>
-      );
-    }
+        <TouchableWithoutFeedback onPress={this.onMenuPress}>
+          <Image
+            style={styles.button}
+            source={require("../rsc/image/menu32x.png")}
+          />
+        </TouchableWithoutFeedback>
+        <PopupDialog
+          dialogTitle={<DialogTitle title="Ayarlar" />}
+          width={0.5}
+          height={0.5}
+          dialogStyle={{ top: 0 }}
+          onDismissed={this.onMenuDismissed}
+          ref={popupDialog => {
+            this.menuDialog = popupDialog;
+          }}
+          dialogAnimation={slideMenuAnimation}
+          actions={[
+            <DialogButton
+              text="TAMAM"
+              align="center"
+              onPress={this.onMenuResultPress}
+              key="0"
+            />
+          ]}
+        >
+          {this.renderSettingsMenuComponent()}
+        </PopupDialog>
+        <ColorTextAnimation
+          color={COLORS[this.selectedColor]}
+          colorText={COLORS_TEXT[this.selectedColor]}
+          animateSpeed={this.animateSpeed}
+          fontSize={this.burstWidth}
+        />
+      </View>
+    );
   }
 
   render() {
@@ -526,7 +524,7 @@ const styles = StyleSheet.create({
     fontSize: 32
   },
   menuTextInput: {
-    height: 40,
+    height: 50,
     width: 100,
     borderColor: "gray",
     borderWidth: 1,

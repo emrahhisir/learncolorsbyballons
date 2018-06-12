@@ -16,7 +16,26 @@ var AnimatedShape = Animated.createAnimatedComponent(Shape);
 var { width: deviceWidth, height: deviceHeight } = Dimensions.get("window");
 
 const VIBRATE_DURATION = 10000;
-const VIBRATE_PATTERN = [0, 250, 150];
+const VIBRATE_PATTERN = [
+	0,
+	500,
+	110,
+	500,
+	110,
+	450,
+	110,
+	200,
+	110,
+	170 /*,
+	40,
+	450,
+	110,
+	200,
+	110,
+	170,
+	40,
+	500*/
+];
 
 class AnimatedCircle extends Component<{}> {
 	displayName = "Circle";
@@ -33,10 +52,12 @@ class AnimatedCircle extends Component<{}> {
 }
 
 export default class BurstAnimation extends Component<{}> {
+	animationStarted = false;
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			animation: new Animated.Value(0)
+			animation: new Animated.Value(0.01)
 		};
 		this._explode = this._explode.bind(this);
 	}
@@ -102,14 +123,14 @@ export default class BurstAnimation extends Component<{}> {
 					// it is important to call play() in a callback.
 					this.burstSound.play();
 				});
-				this.state.animation.setValue(0);
+				this.state.animation.setValue(0.01);
 				this.forceUpdate();
 				this._explode();
-				return true;
+				this.animationStarted = true;
 			}
 		}
 
-		return this.state.animation.Value != 0;
+		return this.animationStarted;
 	}
 
 	_explode() {
@@ -128,10 +149,12 @@ export default class BurstAnimation extends Component<{}> {
 		);
 		Animated.timing(this.state.animation, {
 			duration: this.animationDurationInMsec,
-			toValue: 28
+			toValue: 28 /*,
+			useNativeDriver: true*/
 		}).start(
 			function() {
-				this.state.animation.setValue(0);
+				this.animationStarted = false;
+				this.state.animation.setValue(0.01);
 				this.forceUpdate();
 			}.bind(this)
 		);
