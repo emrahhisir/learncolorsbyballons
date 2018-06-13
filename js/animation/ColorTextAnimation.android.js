@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		marginTop: 20,
 		right: 20,
-		height: 100
+		height: 100,
+		backgroundColor: "#00000000"
 	}
 });

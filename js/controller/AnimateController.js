@@ -133,8 +133,8 @@ export default class AnimateController extends Component<{}> {
     // this.updateWindowDimensions();
     // window.addEventListener("resize", this.updateWindowDimensions);
     this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
-    this.randomNumber1 = this.randomBetween(1, 20);
-    this.randomNumber2 = this.randomBetween(1, 20);
+    this.randomNumber1 = this.randomBetween(5, 40);
+    this.randomNumber2 = this.randomBetween(5, 40);
     this.initializeSound();
   }
 
