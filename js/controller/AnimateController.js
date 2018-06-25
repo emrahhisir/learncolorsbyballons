@@ -26,11 +26,12 @@ import Sky from "../shapes/Sky";
 import BurstAnimation from "../animation/BurstAnimation";
 import ColorTextAnimation from "../animation/ColorTextAnimation";
 import * as Common from "../common";
+import AdsController from "../controller/AdsController";
 
 const BALLOON_NUMBER = 8;
 const SIDE_MARGIN = 15;
 const MAX_ROTATE_DEGREE = 15;
-const ADS_SHOW_THRESHOLD = 100;
+const ADS_SHOW_THRESHOLD = 5;
 const COLORS = [
   "red",
   "yellow",
@@ -51,6 +52,17 @@ const COLORS_TEXT = [
   "PEMBE",
   "MOR"
 ];
+const COLOR_SOUND = [
+  "red.mp3",
+  "yellow.mp3",
+  "green.mp3",
+  "blue.mp3",
+  "black.mp3",
+  "orange.mp3",
+  "pink.mp3",
+  "purple.mp3"
+];
+
 const slideMenuAnimation = new SlideAnimation({
   slideFrom: "top"
 });
@@ -74,6 +86,8 @@ export default class AnimateController extends Component<{}> {
   colorsInScreen = [];
   colorsInScreenRunCounter = 0;
   balloonBurstCounter = 0;
+  showAd = false;
+  sounds = { wrongAnswerSound: {}, colorSound: {}, backgroundSound: {} };
   testCounter = 0;
 
   constructor(props) {
@@ -89,6 +103,8 @@ export default class AnimateController extends Component<{}> {
     this.onMenuDismissed = this.onMenuDismissed.bind(this);
     this.onMenuResultPress = this.onMenuResultPress.bind(this);
     this.showSettignsMenu = this.showSettignsMenu.bind(this);
+    this.adOpened = this.adOpened.bind(this);
+    this.adClosed = this.adClosed.bind(this);
     //this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 
     for (var i = 0; i < BALLOON_NUMBER; i++) {
@@ -100,42 +116,35 @@ export default class AnimateController extends Component<{}> {
     }
   }
 
-  initializeSound() {
-    this.wrongAnswerSound = new Sound(
-      "wrong_answer.mp3",
+  initializeSound(soundProp, bundleName) {
+    this.sounds[soundProp] = new Sound(
+      bundleName,
       Sound.MAIN_BUNDLE,
       function(error) {
         if (error) {
           console.log("failed to load the sound", error);
           return;
         }
-        // loaded successfully
-        // console.log(
-        //  "duration in seconds: " +
-        //    this.wrongAnswerSound.getDuration() +
-        //    "number of channels: " +
-        //    this.wrongAnswerSound.getNumberOfChannels() +
-        //    " " +
-        //    this.wrongAnswerSound.getVolume()
-        // );
       }.bind(this)
     );
 
     // Reduce the volume by half
-    this.wrongAnswerSound.setVolume(0.5);
+    this.sounds[soundProp].setVolume(0.5);
     // console.log("Volume after setVolume: " + this.wrongAnswerSound.getVolume());
 
     // Position the sound to the full right in a stereo field
-    this.wrongAnswerSound.setPan(1);
+    this.sounds[soundProp].setPan(1);
   }
 
   componentDidMount() {
     // this.updateWindowDimensions();
     // window.addEventListener("resize", this.updateWindowDimensions);
-    this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
     this.randomNumber1 = this.randomBetween(5, 40);
     this.randomNumber2 = this.randomBetween(5, 40);
-    this.initializeSound();
+    this.initializeSound("wrongAnswerSound", "wrong_answer.mp3");
+    this.initializeSound("colorSound", COLOR_SOUND[this.selectedColor]);
+    this.initializeSound("backgroundSound", "backgroundMusic.mp3");
+    this.resume();
   }
 
   componentWillMount() {
@@ -146,7 +155,9 @@ export default class AnimateController extends Component<{}> {
   componentWillUnmount() {
     // window.removeEventListener("resize", this.updateWindowDimensions);
     clearInterval(this.animateTimer);
-    this.wrongAnswerSound.release();
+    this.sounds.wrongAnswerSound.release();
+    this.sounds.colorSound.release();
+    this.sounds.backgroundSound.release();
   }
 
   updateWindowDimensions() {
@@ -158,6 +169,31 @@ export default class AnimateController extends Component<{}> {
     let yOffset = this.animateSpeed * 2.0;
     let rotateOffset = this.animateSpeed * 1.0;
     this.setState({ yOffset: yOffset, rotateOffset: rotateOffset });
+  }
+
+  playSound(soundProp) {
+    this.sounds[soundProp].play(
+      function(success) {
+        if (success) {
+          // console.log("successfully finished playing");
+        } else {
+          console.log("playback failed due to audio decoding errors");
+          // reset the player to its uninitialized state (android only)
+          // this is the only option to recover after an error occured and use the player again
+          this.sounds[soundProp].reset();
+        }
+      }.bind(this)
+    );
+  }
+
+  pause() {
+    clearInterval(this.animateTimer);
+    this.sounds.backgroundSound.pause();
+  }
+
+  resume() {
+    this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
+    this.playSound("backgroundSound");
   }
 
   calculateInitialRenderSizes() {
@@ -233,6 +269,7 @@ export default class AnimateController extends Component<{}> {
       colorsInScreenRun = true;
       this.colorsInScreen = [];
       this.colorsInScreenRunCounter = 0;
+      this.playSound("backgroundSound");
     }
 
     for (var i = 0; i < this.balloonNumber && animateBegin; i++) {
@@ -324,10 +361,11 @@ export default class AnimateController extends Component<{}> {
       /*this.selectedColor = this.randomInExcept(
         this.colorsInScreen,
         this.selectedColor
-      );
-      this.balloonBurstCounter++;*/
+      );*/
+      //this.playColorSound();
+      this.balloonBurstCounter++;
     } else {
-      this.wrongAnswerSound.play(
+      this.sounds.wrongAnswerSound.play(
         function(success) {
           if (success) {
             // console.log("successfully finished playing");
@@ -335,15 +373,41 @@ export default class AnimateController extends Component<{}> {
             console.log("playback failed due to audio decoding errors");
             // reset the player to its uninitialized state (android only)
             // this is the only option to recover after an error occured and use the player again
-            this.wrongAnswerSound.reset();
+            this.sounds.wrongAnswerSound.reset();
           }
         }.bind(this)
       );
     }
   }
 
+  playColorSound() {
+    this.sounds.colorSound.play(
+      function(success) {
+        if (success) {
+          // console.log("successfully finished playing");
+        } else {
+          console.log("playback failed due to audio decoding errors");
+          // reset the player to its uninitialized state (android only)
+          // this is the only option to recover after an error occured and use the player again
+          this.sounds.colorSound.reset();
+        }
+      }.bind(this)
+    );
+
+    this.sounds.colorSound = new Sound(
+      COLOR_SOUND[this.selectedColor],
+      Sound.MAIN_BUNDLE,
+      function(error) {
+        if (error) {
+          console.log("failed to load the sound", error);
+          return;
+        }
+      }.bind(this)
+    );
+  }
+
   onMenuPress() {
-    clearInterval(this.animateTimer);
+    this.pause();
     this.menuDialog.show();
   }
 
@@ -357,7 +421,7 @@ export default class AnimateController extends Component<{}> {
       this.animate();
     } else {
       this.secondMenuShowing = false;
-      this.animateTimer = setInterval(() => this.animate(), Common.LCBB_FPS_MS);
+      this.resume();
     }
 
     Keyboard.dismiss();
@@ -428,10 +492,28 @@ export default class AnimateController extends Component<{}> {
     this.burstStart = false;
   }
 
-  renderConditional() {
+  adOpened() {
+    this.pause();
+  }
+
+  adClosed() {
+    this.balloonBurstCounter = 0;
+    this.showAd = false;
+    this.resume();
+  }
+
+  render() {
+    if (this.balloonBurstCounter >= ADS_SHOW_THRESHOLD) {
+      this.showAd = true;
+    }
     this.renderBalloons();
     return (
       <View height={this.screenHeight} width={this.screenWidth}>
+        <AdsController
+          adOpened={this.adOpened}
+          adClosed={this.adClosed}
+          showAd={this.showAd}
+        />
         <Svg height={this.screenHeight} width={this.screenWidth}>
           <Sky
             width={this.screenWidth}
@@ -503,9 +585,9 @@ export default class AnimateController extends Component<{}> {
     );
   }
 
-  render() {
+  /*render() {
     return this.renderConditional();
-  }
+  }*/
 }
 
 const styles = StyleSheet.create({
