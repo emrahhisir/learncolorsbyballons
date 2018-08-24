@@ -39,12 +39,20 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B1021D7220AD4A3C003DE47C /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1021D4820AD4A3B003DE47C /* GoogleMobileAds.framework */; };
+		B1181D25212802A4003A2B47 /* green.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D1C212802A3003A2B47 /* green.m4a */; };
+		B1181D26212802A4003A2B47 /* yellow.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D1D212802A3003A2B47 /* yellow.m4a */; };
+		B1181D27212802A4003A2B47 /* blue.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D1E212802A3003A2B47 /* blue.m4a */; };
+		B1181D28212802A4003A2B47 /* red.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D1F212802A3003A2B47 /* red.m4a */; };
+		B1181D29212802A4003A2B47 /* orange.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D20212802A3003A2B47 /* orange.m4a */; };
+		B1181D2A212802A4003A2B47 /* pink.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D21212802A4003A2B47 /* pink.m4a */; };
+		B1181D2B212802A4003A2B47 /* black.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D22212802A4003A2B47 /* black.m4a */; };
+		B1181D2D212802A4003A2B47 /* purple.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B1181D24212802A4003A2B47 /* purple.m4a */; };
+		B1181D302128C171003A2B47 /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1181D2F2128C171003A2B47 /* background_music.mp3 */; };
 		B1566169207BF790000A3B88 /* balloon_burst_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */; };
 		B156616A207BF790000A3B88 /* wrong_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1566168207BF790000A3B88 /* wrong_answer.mp3 */; };
 		B1B566942071EC3B004D2545 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B5666C2071EC1E004D2545 /* libART.a */; };
 		B1C1601220911EB400D27368 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C1601120911B2400D27368 /* libRNSVG-tvOS.a */; };
 		B1CFBA271FFDFE560086FBE2 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		B1DFABC420DFE82B00F87E07 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B1DFAB9A20DFE82A00F87E07 /* backgroundMusic.mp3 */; };
 		B1E5EB0B20A0EA1F00B3A926 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */; };
 		E3D8BA34D233497E85586005 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC52930B3ECC4EEB9BE71605 /* libRNSVG.a */; };
 /* End PBXBuildFile section */
@@ -383,10 +391,18 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B1021D4820AD4A3B003DE47C /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		B1181D1C212802A3003A2B47 /* green.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = green.m4a; path = ../android/app/src/main/res/raw/green.m4a; sourceTree = "<group>"; };
+		B1181D1D212802A3003A2B47 /* yellow.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = yellow.m4a; path = ../android/app/src/main/res/raw/yellow.m4a; sourceTree = "<group>"; };
+		B1181D1E212802A3003A2B47 /* blue.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = blue.m4a; path = ../android/app/src/main/res/raw/blue.m4a; sourceTree = "<group>"; };
+		B1181D1F212802A3003A2B47 /* red.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = red.m4a; path = ../android/app/src/main/res/raw/red.m4a; sourceTree = "<group>"; };
+		B1181D20212802A3003A2B47 /* orange.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = orange.m4a; path = ../android/app/src/main/res/raw/orange.m4a; sourceTree = "<group>"; };
+		B1181D21212802A4003A2B47 /* pink.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = pink.m4a; path = ../android/app/src/main/res/raw/pink.m4a; sourceTree = "<group>"; };
+		B1181D22212802A4003A2B47 /* black.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = black.m4a; path = ../android/app/src/main/res/raw/black.m4a; sourceTree = "<group>"; };
+		B1181D24212802A4003A2B47 /* purple.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = purple.m4a; path = ../android/app/src/main/res/raw/purple.m4a; sourceTree = "<group>"; };
+		B1181D2F2128C171003A2B47 /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_music.mp3; path = ../android/app/src/main/res/raw/background_music.mp3; sourceTree = "<group>"; };
 		B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = balloon_burst_sound.mp3; path = rsc/sound/balloon_burst_sound.mp3; sourceTree = "<group>"; };
 		B1566168207BF790000A3B88 /* wrong_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wrong_answer.mp3; path = rsc/sound/wrong_answer.mp3; sourceTree = "<group>"; };
 		B1B566662071EC1D004D2545 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
-		B1DFAB9A20DFE82A00F87E07 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = backgroundMusic.mp3; path = ../android/app/src/main/res/raw/backgroundMusic.mp3; sourceTree = "<group>"; };
 		B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = ../../../Downloads/LCBB_LOGO/LaunchScreen.png; sourceTree = "<group>"; };
 		BD6F1760CEB54C33A946C1BC /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		DC52930B3ECC4EEB9BE71605 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
@@ -664,7 +680,15 @@
 		B15BA2F4209F89C500840C88 /* res */ = {
 			isa = PBXGroup;
 			children = (
-				B1DFAB9A20DFE82A00F87E07 /* backgroundMusic.mp3 */,
+				B1181D2F2128C171003A2B47 /* background_music.mp3 */,
+				B1181D22212802A4003A2B47 /* black.m4a */,
+				B1181D1E212802A3003A2B47 /* blue.m4a */,
+				B1181D1C212802A3003A2B47 /* green.m4a */,
+				B1181D20212802A3003A2B47 /* orange.m4a */,
+				B1181D21212802A4003A2B47 /* pink.m4a */,
+				B1181D24212802A4003A2B47 /* purple.m4a */,
+				B1181D1F212802A3003A2B47 /* red.m4a */,
+				B1181D1D212802A3003A2B47 /* yellow.m4a */,
 				B1E5EAE220A0EA1E00B3A926 /* LaunchScreen.png */,
 				B1566167207BF790000A3B88 /* balloon_burst_sound.mp3 */,
 				B1566168207BF790000A3B88 /* wrong_answer.mp3 */,
@@ -1211,12 +1235,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1181D302128C171003A2B47 /* background_music.mp3 in Resources */,
+				B1181D27212802A4003A2B47 /* blue.m4a in Resources */,
+				B1181D25212802A4003A2B47 /* green.m4a in Resources */,
+				B1181D2D212802A4003A2B47 /* purple.m4a in Resources */,
+				B1181D2B212802A4003A2B47 /* black.m4a in Resources */,
 				B1566169207BF790000A3B88 /* balloon_burst_sound.mp3 in Resources */,
+				B1181D2A212802A4003A2B47 /* pink.m4a in Resources */,
 				B1E5EB0B20A0EA1F00B3A926 /* LaunchScreen.png in Resources */,
-				B1DFABC420DFE82B00F87E07 /* backgroundMusic.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B156616A207BF790000A3B88 /* wrong_answer.mp3 in Resources */,
+				B1181D28212802A4003A2B47 /* red.m4a in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				B1181D29212802A4003A2B47 /* orange.m4a in Resources */,
+				B1181D26212802A4003A2B47 /* yellow.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
