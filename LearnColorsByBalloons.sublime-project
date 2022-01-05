@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/emrah/Workspace/reactNativeStarterTemplate/react-native-starter"
 		}
 	]
 }
